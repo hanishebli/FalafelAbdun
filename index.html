@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falafel Abdoun | Smooth Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-forest: #0d1a0d;   /* أخضر غامق جداً */
+            --logo-lime: #99c14d;     /* لون الفلافل الأخضر من الشعار */
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --card-smooth: #162615;
+            --text-main: #f0f4f0;
+            --text-dim: #a0b0a0;
+        }
+
+        body { 
+            /* تطبيق الخطوط المستديرة المتناسقة */
+            font-family: 'Fredoka', 'Cairo', sans-serif; 
+            margin: 0; background: var(--dark-forest); color: var(--text-main); 
+            scroll-behavior: smooth; -webkit-font-smoothing: antialiased;
+        }
+
+        .ltr { direction: ltr; text-align: left; }
+        .rtl { direction: rtl; text-align: right; }
+
+        /* زر تبديل اللغة السلس */
+        .lang-switch {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--logo-lime); color: var(--dark-forest);
+            border: none; padding: 10px 20px; border-radius: 30px;
+            cursor: pointer; z-index: 2000; font-weight: 700;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            font-family: 'Cairo', sans-serif;
+        }
+        .rtl .lang-switch { right: auto; left: 20px; }
+
+        /* الهيدر */
+        header { 
+            padding: 60px 20px 40px; text-align: center;
+            background: radial-gradient(circle at top, #1a331a 0%, var(--dark-forest) 70%);
+        }
+        .logo {
+            width: 140px; height: auto; margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(153, 193, 77, 0.2));
+        }
+        header h1 { margin: 0; font-size: 2.2rem; font-weight: 700; color: #fff; }
+        header p { color: var(--logo-lime); font-size: 1.1rem; margin-top: 8px; font-weight: 600; }
+
+        /* التنقل العلوي المثبت */
+        nav { 
+            position: sticky; top: 0; 
+            background: rgba(13, 26, 13, 0.85);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            display: flex; overflow-x: auto; padding: 15px 10px; 
+            gap: 12px; border-bottom: 1px solid rgba(153, 193, 77, 0.1); z-index: 1000;
+        }
+        nav::-webkit-scrollbar { display: none; } 
+        
+        .cat-btn {
+            background: var(--glass-bg); border: 1px solid rgba(153, 193, 77, 0.3);
+            padding: 10px 22px; border-radius: 50px; white-space: nowrap; 
+            text-decoration: none; color: var(--text-main); font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .cat-btn:active, .cat-btn:focus { 
+            background: var(--logo-lime); color: var(--dark-forest); 
+        }
+
+        /* حاوية القائمة والبطاقات */
+        .container { padding: 30px 20px; max-width: 600px; margin: auto; }
+        section { padding-top: 100px; margin-top: -80px; margin-bottom: 50px; }
+        
+        h2 { 
+            font-size: 1.8rem; font-weight: 700; color: var(--logo-lime);
+            margin-bottom: 30px; display: flex; align-items: center; gap: 15px;
+        }
+        h2::after { content: ""; flex: 1; height: 2px; background: rgba(153, 193, 77, 0.15); }
+
+        .item-card {
+            background: var(--card-smooth); border-radius: 25px; padding: 22px;
+            margin-bottom: 20px; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .item-info h3 { margin: 0; font-size: 1.3rem; font-weight: 600; color: #fff; }
+        .item-info p { margin: 8px 0 0; color: var(--text-dim); font-size: 1rem; line-height: 1.5; }
+        
+        .price { 
+            font-weight: 700; color: var(--logo-lime); font-size: 1.2rem; 
+            background: rgba(153, 193, 77, 0.12); padding: 8px 15px; border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        /* منطق تبديل اللغات */
+        [lang="ar"] { display: none; }
+        .rtl [lang="ar"] { display: block; }
+        .rtl [lang="en"] { display: none; }
+        span[lang="ar"], span[lang="en"] { display: none; }
+        .rtl span[lang="ar"] { display: inline; }
+        .rtl span[lang="en"] { display: none; }
+        .ltr span[lang="en"] { display: inline; }
+        .ltr span[lang="ar"] { display: none; }
+    </style>
+</head>
+<body class="ltr">
+
+<button class="lang-switch" onclick="toggleLanguage()">العربية / English</button>
+
+<header>
+    <img src="logo.png" alt="Falafel Abdoun" class="logo" onerror="this.style.opacity='0.5'">
+    <h1 lang="en">Falafel Abdoun</h1>
+    <h1 lang="ar">فلافل عبدون</h1>
+    <p lang="en">THE TASTE OF TRADITION</p>
+    <p lang="ar">طعم الأصالة والمعلمية</p>
+</header>
+
+<nav>
+    <a href="#sandwiches" class="cat-btn"><span lang="en">Sandwiches</span><span lang="ar">الساندوتشات</span></a>
+    <a href="#plates" class="cat-btn"><span lang="en">Plates</span><span lang="ar">الصحون</span></a>
+    <a href="#boxes" class="cat-btn"><span lang="en">Boxes</span><span lang="ar">البوكسات</span></a>
+    <a href="#drinks" class="cat-btn"><span lang="en">Drinks</span><span lang="ar">المشروبات</span></a>
+</nav>
+
+<div class="container">
+    
+    <section id="sandwiches">
+        <h2 lang="en">Sandwiches</h2><h2 lang="ar">الساندوتشات</h2>
+        
+        <div class="item-card">
+            <div class="item-info">
+                <h3 lang="en">Super Falafel</h3><h3 lang="ar">فلافل سوبر</h3>
+                <p lang="en">Hummus, potatoes, and special tahini</p>
+                <p lang="ar">حمص، بطاطس، وطحينة فلافل عبدون الخاصة</p>
+            </div>
+            <div class="price">8 SAR</div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    function toggleLanguage() {
+        const body = document.body;
+        if (body.classList.contains('ltr')) {
+            body.classList.replace('ltr', 'rtl');
+        } else {
+            body.classList.replace('rtl', 'ltr');
+        }
+    }
+</script>
+
+</body>
+</html>
