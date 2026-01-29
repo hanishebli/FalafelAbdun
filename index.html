@@ -9,7 +9,7 @@
         :root {
             --dark-forest: #0d1a0d;
             --logo-lime: #99c14d;
-            --warning-red: #e67e22;   /* Soft orange-red for allergy info */
+            --warning-red: #e67e22;   
             --glass-bg: rgba(255, 255, 255, 0.05);
             --card-smooth: #162615;
             --text-main: #f0f4f0;
@@ -36,15 +36,17 @@
         .rtl .lang-switch { right: auto; left: 20px; }
 
         header { 
-            padding: 60px 20px 40px; text-align: center;
+            padding: 40px 20px 30px; text-align: center;
             background: radial-gradient(circle at top, #1a331a 0%, var(--dark-forest) 70%);
         }
+        
         .logo {
-            width: 140px; height: auto; margin-bottom: 20px;
+            width: 300px; max-width: 90%; height: auto; 
+            margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;
             filter: drop-shadow(0 0 15px rgba(153, 193, 77, 0.2));
         }
-        header h1 { margin: 0; font-size: 2.2rem; font-weight: 700; color: #fff; }
-        header p { color: var(--logo-lime); font-size: 1.1rem; margin-top: 8px; font-weight: 600; }
+        
+        header p { color: var(--logo-lime); font-size: 1.1rem; margin-top: 5px; font-weight: 600; }
 
         nav { 
             position: sticky; top: 0; 
@@ -81,35 +83,48 @@
         .rtl .sub-title { border-left: none; border-right: 4px solid var(--logo-lime); }
 
         .item-card {
-            background: var(--card-smooth); border-radius: 25px; padding: 18px;
-            margin-bottom: 15px; display: flex; justify-content: space-between;
-            align-items: flex-start; /* Aligns text to top */
+            background: var(--card-smooth); border-radius: 25px; padding: 15px;
+            margin-bottom: 15px; display: flex; align-items: center; gap: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
             border: 1px solid rgba(255,255,255,0.02);
         }
 
+        /* Image Styling */
+        .item-img {
+            width: 65px; height: 65px; border-radius: 15px;
+            object-fit: cover; flex-shrink: 0;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(153, 193, 77, 0.2);
+        }
+
         .item-info { flex: 1; }
-        .item-info h3 { margin: 0; font-size: 1.15rem; font-weight: 600; color: #fff; line-height: 1.3; }
+        .item-info h3 { margin: 0; font-size: 1.1rem; font-weight: 600; color: #fff; line-height: 1.3; }
         .item-info p { margin: 4px 0 0; color: var(--text-dim); font-size: 0.85rem; }
         
-        /* New Allergy Style */
         .allergy {
-            display: block;
-            color: var(--warning-red);
-            font-size: 0.75rem;
-            margin-top: 4px;
-            font-weight: 600;
+            display: block; color: var(--warning-red);
+            font-size: 0.75rem; margin-top: 4px; font-weight: 600;
         }
 
         .price { 
-            font-weight: 700; color: var(--logo-lime); font-size: 1.1rem; 
-            background: rgba(153, 193, 77, 0.12); padding: 8px 12px; border-radius: 12px;
-            white-space: nowrap; margin-left: 10px; align-self: center;
+            font-weight: 800; color: var(--logo-lime); font-size: 1.1rem; 
+            background: rgba(153, 193, 77, 0.12); padding: 6px 10px; border-radius: 10px;
+            white-space: nowrap; align-self: center;
+            font-family: 'Fredoka', sans-serif; 
         }
+        
+        .cur-symbol { font-size: 0.9em; margin-left: 3px; vertical-align: middle; }
 
+        /* Language Logic */
         [lang="ar"] { display: none; }
         .rtl [lang="ar"] { display: block; }
         .rtl [lang="en"] { display: none; }
+        
+        .rtl span[lang="ar"] { display: inline; }
+        .rtl span[lang="en"] { display: none; }
+        .ltr span[lang="en"] { display: inline; }
+        .ltr span[lang="ar"] { display: none; }
+
     </style>
 </head>
 <body class="ltr">
@@ -117,11 +132,9 @@
 <button class="lang-switch" onclick="toggleLanguage()">العربية / English</button>
 
 <header>
-    <img src="logo.png" alt="Falafel Abdoun" class="logo" onerror="this.style.opacity='0.5'">
-    <h1 lang="en">Falafel Abdoun</h1>
-    <h1 lang="ar">فلافل عبدون</h1>
-    <p lang="en">THE TASTE OF TRADITION</p>
-    <p lang="ar">طعم الأصالة والمعلمية</p>
+    <img src="logo.png" alt="Falafel Abdoun Banner" class="logo" onerror="this.style.opacity='0.5'">
+    <p lang="en">Enjoy the quality</p>
+    <p lang="ar">استمتع بالجودة</p>
 </header>
 
 <nav>
@@ -137,95 +150,728 @@
         <h2 lang="en">Sandwiches</h2><h2 lang="ar">الساندوتشات</h2>
 
         <h3 class="sub-title"><span lang="en">Normal Bread</span><span lang="ar">خبز عادي</span></h3>
-        <div class="item-card"><div class="item-info"><h3>No Egg | بدون بيض</h3><p>280 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">4 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>With Egg | مع بيض</h3><p>305 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">5 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Stuffed (No Egg) | محشي بدون بيض</h3><p>310 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">5 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Stuffed with Egg | محشي مع بيض</h3><p>370 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Egg & Cheese | بيض جبن</h3><p>275 Cal</p><span class="allergy">Contains: Wheat, Eggs, Cheese | القمح - البيض - الاجبان</span></div><div class="price">3 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Cheese & Potato | جبن بطاطا</h3><p>260 Cal</p><span class="allergy">Contains: Wheat, Cheese | القمح - الاجبان</span></div><div class="price">4 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Shakshuka | شكشوكة</h3><p>432 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">4 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Liver | كبدة</h3><p>455 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Meat | لحم</h3><p>480 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Chicken | دجاج</h3><p>280 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">7 SAR</div></div>
+        
+        <div class="item-card">
+            <img src="sandwich.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Sandwich (No Egg)</span><span lang="ar">ساندوتش بدون بيض</span></h3>
+                <p>280 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">4<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="sandwich-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Sandwich With Egg</span><span lang="ar">ساندوتش مع بيض</span></h3>
+                <p>305 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">5<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="stuffed.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Stuffed Falafel (No Egg)</span><span lang="ar">فلافل محشي بدون بيض</span></h3>
+                <p>310 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">5<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="stuffed-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Stuffed Falafel With Egg</span><span lang="ar">فلافل محشي مع بيض</span></h3>
+                <p>370 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="egg-cheese.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Egg & Cheese</span><span lang="ar">ساندوتش بيض جبن</span></h3>
+                <p>275 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs, Cheese</span><span lang="ar">يحتوي على: القمح، البيض، الاجبان</span></span>
+            </div>
+            <div class="price">3<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="cheese-potato.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Cheese & Potato</span><span lang="ar">ساندوتش جبن بطاطا</span></h3>
+                <p>260 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Cheese</span><span lang="ar">يحتوي على: القمح، الاجبان</span></span>
+            </div>
+            <div class="price">4<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="shakshuka-sand.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Shakshuka Sandwich</span><span lang="ar">ساندوتش شكشوكة</span></h3>
+                <p>432 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">4<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="liver-sand.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Liver Sandwich</span><span lang="ar">ساندوتش كبدة</span></h3>
+                <p>455 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="meat-sand.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Meat Sandwich</span><span lang="ar">ساندوتش لحم</span></h3>
+                <p>480 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="chicken-sand.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Chicken Sandwich</span><span lang="ar">ساندوتش دجاج</span></h3>
+                <p>280 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
 
         <h3 class="sub-title"><span lang="en">Saj Bread</span><span lang="ar">خبز صاج</span></h3>
-        <div class="item-card"><div class="item-info"><h3>Saj No Egg | صاج بدون بيض</h3><p>197 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">5 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj With Egg | صاج مع بيض</h3><p>234 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj Stuffed | صاج فلافل محشي</h3><p>293 Cal</p><span class="allergy">Contains: Wheat, Legumes | القمح - البقوليات</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj Stuffed & Egg | صاج بيض محشي</h3><p>412 Cal</p><span class="allergy">Contains: Wheat, Eggs, Legumes | قمح - بيض - بقوليات</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj Egg & Cheese | صاج بيض جبن</h3><p>204 Cal</p><span class="allergy">Contains: Wheat, Eggs, Cheese | القمح - البيض - الاجبان</span></div><div class="price">4 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj Cheese & Potato | صاج جبن بطاطا</h3><p>189 Cal</p><span class="allergy">Contains: Wheat, Cheese | القمح - الاجبان</span></div><div class="price">5 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj Shakshuka | صاج شكشوكة</h3><p>361 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">5 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj Liver | صاج كبدة</h3><p>384 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">8 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj Meat | صاج لحم</h3><p>409 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">8 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Saj Chicken | صاج دجاج</h3><p>209 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">8 SAR</div></div>
+        
+        <div class="item-card">
+            <img src="saj.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj No Egg</span><span lang="ar">صاج بدون بيض</span></h3>
+                <p>197 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">5<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj With Egg</span><span lang="ar">صاج مع بيض</span></h3>
+                <p>234 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-stuffed.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj Stuffed Falafel</span><span lang="ar">صاج فلافل محشي</span></h3>
+                <p>293 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Legumes</span><span lang="ar">يحتوي على: القمح، البقوليات</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-stuffed-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj Stuffed & Egg</span><span lang="ar">صاج بيض فلافل محشي</span></h3>
+                <p>412 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs, Legumes</span><span lang="ar">قمح، بيض، بقوليات</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-egg-cheese.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj Egg & Cheese</span><span lang="ar">صاج بيض جبن</span></h3>
+                <p>204 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs, Cheese</span><span lang="ar">يحتوي على: القمح، البيض، الاجبان</span></span>
+            </div>
+            <div class="price">4<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-cheese-potato.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj Cheese & Potato</span><span lang="ar">صاج جبن بطاطا</span></h3>
+                <p>189 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Cheese</span><span lang="ar">يحتوي على: القمح، الاجبان</span></span>
+            </div>
+            <div class="price">5<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-shakshuka.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj Shakshuka</span><span lang="ar">صاج شكشوكة</span></h3>
+                <p>361 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">5<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-liver.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj Liver</span><span lang="ar">صاج كبدة</span></h3>
+                <p>384 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">8<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-meat.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj Meat</span><span lang="ar">صاج لحم</span></h3>
+                <p>409 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">8<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="saj-chicken.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Saj Chicken</span><span lang="ar">صاج دجاج</span></h3>
+                <p>209 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">8<span class="cur-symbol">⃁</span></div>
+        </div>
 
         <h3 class="sub-title"><span lang="en">Jumbo Bread</span><span lang="ar">خبز جامبو</span></h3>
-        <div class="item-card"><div class="item-info"><h3>Jumbo No Egg | جامبو بدون بيض</h3><p>317 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo With Egg | جامبو مع بيض</h3><p>347 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">8 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo Stuffed | جامبو فلافل محشي</h3><p>413 Cal</p><span class="allergy">Contains: Wheat, Legumes | القمح - البقوليات</span></div><div class="price">8 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo Stuffed & Egg | جامبو بيض محشي</h3><p>483 Cal</p><span class="allergy">Contains: Wheat, Eggs, Legumes | قمح - بيض - بقوليات</span></div><div class="price">9 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo Egg & Cheese | جامبو بيض جبن</h3><p>275 Cal</p><span class="allergy">Contains: Wheat, Eggs, Cheese | القمح - البيض - الاجبان</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo Cheese & Potato | جامبو جبن بطاطا</h3><p>260 Cal</p><span class="allergy">Contains: Wheat, Cheese | القمح - الاجبان</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo Shakshuka | جامبو شكشوكة</h3><p>432 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo Liver | جامبو كبدة</h3><p>455 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">10 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo Meat | جامبو لحم</h3><p>480 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">10 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jumbo Chicken | جامبو دجاج</h3><p>280 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">10 SAR</div></div>
+        
+        <div class="item-card">
+            <img src="jumbo.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo No Egg</span><span lang="ar">جامبو بدون بيض</span></h3>
+                <p>317 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo With Egg</span><span lang="ar">جامبو مع بيض</span></h3>
+                <p>347 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">8<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-stuffed.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo Stuffed Falafel</span><span lang="ar">جامبو فلافل محشي</span></h3>
+                <p>413 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Legumes</span><span lang="ar">يحتوي على: القمح، البقوليات</span></span>
+            </div>
+            <div class="price">8<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-stuffed-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo Stuffed & Egg</span><span lang="ar">جامبو بيض فلافل محشي</span></h3>
+                <p>483 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs, Legumes</span><span lang="ar">قمح، بيض، بقوليات</span></span>
+            </div>
+            <div class="price">9<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-egg-cheese.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo Egg & Cheese</span><span lang="ar">جامبو بيض جبن</span></h3>
+                <p>275 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs, Cheese</span><span lang="ar">يحتوي على: القمح، البيض، الاجبان</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-cheese-potato.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo Cheese & Potato</span><span lang="ar">جامبو جبن بطاطا</span></h3>
+                <p>260 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Cheese</span><span lang="ar">يحتوي على: القمح، الاجبان</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-shakshuka.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo Shakshuka</span><span lang="ar">جامبو شكشوكة</span></h3>
+                <p>432 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-liver.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo Liver</span><span lang="ar">جامبو كبدة</span></h3>
+                <p>455 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">10<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-meat.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo Meat</span><span lang="ar">جامبو لحم</span></h3>
+                <p>480 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">10<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="jumbo-chicken.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jumbo Chicken</span><span lang="ar">جامبو دجاج</span></h3>
+                <p>280 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">10<span class="cur-symbol">⃁</span></div>
+        </div>
 
         <h3 class="sub-title"><span lang="en">Iraqi Bread</span><span lang="ar">خبز عراقي</span></h3>
-        <div class="item-card"><div class="item-info"><h3>Iraqi No Egg | عراقي بدون بيض</h3><p>280 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi With Egg | عراقي مع بيض</h3><p>305 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">8 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi Stuffed | عراقي فلافل محشي</h3><p>310 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">8 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi Stuffed & Egg | عراقي بيض محشي</h3><p>370 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">9 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi Egg & Cheese | عراقي بيض جبن</h3><p>275 Cal</p><span class="allergy">Contains: Wheat, Eggs, Cheese | القمح - البيض - الاجبان</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi Cheese & Potato | عراقي جبن بطاطا</h3><p>260 Cal</p><span class="allergy">Contains: Wheat, Cheese | القمح - الاجبان</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi Shakshuka | عراقي شكشوكة</h3><p>432 Cal</p><span class="allergy">Contains: Wheat, Eggs | القمح - البيض</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi Liver | عراقي كبدة</h3><p>455 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">10 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi Meat | عراقي لحم</h3><p>480 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">10 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Iraqi Chicken | عراقي دجاج</h3><p>280 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">10 SAR</div></div>
+        
+        <div class="item-card">
+            <img src="iraqi.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi No Egg</span><span lang="ar">عراقي بدون بيض</span></h3>
+                <p>280 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi With Egg</span><span lang="ar">عراقي مع بيض</span></h3>
+                <p>305 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">8<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-stuffed.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi Stuffed Falafel</span><span lang="ar">عراقي فلافل محشي</span></h3>
+                <p>310 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">8<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-stuffed-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi Stuffed & Egg</span><span lang="ar">عراقي بيض فلافل محشي</span></h3>
+                <p>370 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">9<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-egg-cheese.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi Egg & Cheese</span><span lang="ar">عراقي بيض جبن</span></h3>
+                <p>275 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs, Cheese</span><span lang="ar">يحتوي على: القمح، البيض، الاجبان</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-cheese-potato.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi Cheese & Potato</span><span lang="ar">عراقي جبن بطاطا</span></h3>
+                <p>260 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Cheese</span><span lang="ar">يحتوي على: القمح، الاجبان</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-shakshuka.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi Shakshuka</span><span lang="ar">عراقي شكشوكة</span></h3>
+                <p>432 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Eggs</span><span lang="ar">يحتوي على: القمح، البيض</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-liver.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi Liver</span><span lang="ar">عراقي كبدة</span></h3>
+                <p>455 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">10<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-meat.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi Meat</span><span lang="ar">عراقي لحم</span></h3>
+                <p>480 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">10<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="iraqi-chicken.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Iraqi Chicken</span><span lang="ar">عراقي دجاج</span></h3>
+                <p>280 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">10<span class="cur-symbol">⃁</span></div>
+        </div>
     </section>
 
     <section id="plates">
         <h2 lang="en">Plates</h2><h2 lang="ar">الأطباق</h2>
-        <div class="item-card"><div class="item-info"><h3>Hummus 250g | حمص ٢٥٠ غم</h3><p>850 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Large Hummus | حمص كبير</h3><p>1100 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">10 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Hummus Meat & Pine | حمص باللحم والصنوبر</h3><p>1300 Cal</p><span class="allergy">Contains: Nuts, Legumes | المكسرات - البقوليات</span></div><div class="price">18 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Hummus Liver | حمص بالكبدة</h3><p>1080 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">18 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Hummus Chicken | حمص بالدجاج</h3><p>990 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">18 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Mutabbal 250g | متبل ٢٥٠ غم</h3><p>560 Cal</p></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Mixed Hummus & Mutabbal | مشكل حمص متبل</h3><p>600 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">7 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Hummus Beiruti | حمص بيروتي</h3><p>770 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">8 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Hummus with Pine | حمص بالصنوبر</h3><p>900 Cal</p><span class="allergy">Contains: Legumes, Nuts | البقوليات المكسرات</span></div><div class="price">14 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Fatteh with Pine | فتة حمص بالصنوبر</h3><p>1261 Cal</p><span class="allergy">Contains: Legumes, Nuts | البقوليات - المكسرات</span></div><div class="price">17 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Fatteh Meat & Pine | فتة حمص باللحم والصنوبر</h3><p>1350 Cal</p><span class="allergy">Contains: Legumes, Nuts | البقوليات المكسرات</span></div><div class="price">22 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Shami Fatteh | فتة شامية</h3><p>1400 Cal</p><span class="allergy">Contains: Legumes, Nuts | البقوليات - المكسرات</span></div><div class="price">17 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Musabbaha | مسبحة</h3><p>1600 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">9 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Qudsia | قدسية</h3><p>870 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">9 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jordanian Foul | فول أردني محلي</h3><p>770 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Jordanian Foul (To-Go) | فول أردني سفري</h3><p>770 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">3 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Lentils | عدس محلي</h3><p>550 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Lentils (To-Go) | عدس سفري</h3><p>550 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">3 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Shakshuka Plate | شكشوكة</h3><p>631 Cal</p><span class="allergy">Contains: Eggs | البيض</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Fried Egg Plate | بيض مقلي</h3><p>430 Cal</p><span class="allergy">Contains: Eggs | البيض</span></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Salad Plate | صحن سلطة</h3><p>830 Cal</p></div><div class="price">5 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Meat Plate | صحن لحم</h3><p>831 Cal</p></div><div class="price">15 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Liver Plate | صحن كبدة</h3><p>772 Cal</p></div><div class="price">15 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Chicken Plate | صحن دجاج</h3><p>451 Cal</p></div><div class="price">15 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Mafraka Plate | صحن مفركة</h3><p>720 Cal</p><span class="allergy">Contains: Eggs | البيض</span></div><div class="price">10 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Potato Plate | صحن بطاطا</h3><p>960 Cal</p></div><div class="price">6 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Mixed Fried Plate | صحن مشكل مقالي</h3><p>1200 Cal</p><span class="allergy">Contains: Eggs | البيض</span></div><div class="price">7 SAR</div></div>
+        
+        <div class="item-card">
+            <img src="hummus.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Hummus 250g</span><span lang="ar">حمص ٢٥٠ غم</span></h3>
+                <p>850 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="hummus-large.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Large Hummus</span><span lang="ar">حمص كبير</span></h3>
+                <p>1100 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">10<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="hummus-meat.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Hummus Meat & Pine</span><span lang="ar">حمص باللحم والصنوبر</span></h3>
+                <p>1300 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Nuts, Legumes</span><span lang="ar">يحتوي على: المكسرات، البقوليات</span></span>
+            </div>
+            <div class="price">18<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="hummus-liver.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Hummus Liver</span><span lang="ar">حمص بالكبدة</span></h3>
+                <p>1080 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">18<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="hummus-chicken.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Hummus Chicken</span><span lang="ar">حمص بالدجاج</span></h3>
+                <p>990 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">18<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="mutabbal.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Mutabbal 250g</span><span lang="ar">متبل ٢٥٠ غم</span></h3>
+                <p>560 Cal</p>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="mixed-hummus.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Mixed Hummus & Mutabbal</span><span lang="ar">مشكل حمص متبل</span></h3>
+                <p>600 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="hummus-beiruti.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Hummus Beiruti</span><span lang="ar">حمص بيروتي</span></h3>
+                <p>770 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">8<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="hummus-pine.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Hummus with Pine</span><span lang="ar">حمص بالصنوبر</span></h3>
+                <p>900 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes, Nuts</span><span lang="ar">يحتوي على: البقوليات، المكسرات</span></span>
+            </div>
+            <div class="price">14<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="fatteh-pine.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Fatteh with Pine</span><span lang="ar">فتة حمص بالصنوبر</span></h3>
+                <p>1261 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes, Nuts</span><span lang="ar">يحتوي على: البقوليات، المكسرات</span></span>
+            </div>
+            <div class="price">17<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="fatteh-meat.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Fatteh Meat & Pine</span><span lang="ar">فتة حمص باللحم والصنوبر</span></h3>
+                <p>1350 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes, Nuts</span><span lang="ar">يحتوي على: البقوليات، المكسرات</span></span>
+            </div>
+            <div class="price">22<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="fatteh-shami.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Shami Fatteh</span><span lang="ar">فتة شامية</span></h3>
+                <p>1400 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes, Nuts</span><span lang="ar">يحتوي على: البقوليات، المكسرات</span></span>
+            </div>
+            <div class="price">17<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="musabbaha.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Musabbaha</span><span lang="ar">مسبحة</span></h3>
+                <p>1600 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">9<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="qudsia.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Qudsia</span><span lang="ar">قدسية</span></h3>
+                <p>870 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">9<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="foul.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jordanian Foul</span><span lang="ar">فول أردني محلي</span></h3>
+                <p>770 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="foul-togo.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Jordanian Foul (To-Go)</span><span lang="ar">فول أردني سفري</span></h3>
+                <p>770 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">3<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="lentils.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Lentils</span><span lang="ar">عدس محلي</span></h3>
+                <p>550 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="lentils-togo.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Lentils (To-Go)</span><span lang="ar">عدس سفري</span></h3>
+                <p>550 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">3<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="shakshuka.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Shakshuka Plate</span><span lang="ar">شكشوكة</span></h3>
+                <p>631 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Eggs</span><span lang="ar">يحتوي على: البيض</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="fried-egg.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Fried Egg Plate</span><span lang="ar">بيض مقلي</span></h3>
+                <p>430 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Eggs</span><span lang="ar">يحتوي على: البيض</span></span>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="salad.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Salad Plate</span><span lang="ar">صحن سلطة</span></h3>
+                <p>830 Cal</p>
+            </div>
+            <div class="price">5<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="meat-plate.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Meat Plate</span><span lang="ar">صحن لحم</span></h3>
+                <p>831 Cal</p>
+            </div>
+            <div class="price">15<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="liver-plate.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Liver Plate</span><span lang="ar">صحن كبدة</span></h3>
+                <p>772 Cal</p>
+            </div>
+            <div class="price">15<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="chicken-plate.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Chicken Plate</span><span lang="ar">صحن دجاج</span></h3>
+                <p>451 Cal</p>
+            </div>
+            <div class="price">15<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="mafraka.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Mafraka Plate</span><span lang="ar">صحن مفركة</span></h3>
+                <p>720 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Eggs</span><span lang="ar">يحتوي على: البيض</span></span>
+            </div>
+            <div class="price">10<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="potato.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Potato Plate</span><span lang="ar">صحن بطاطا</span></h3>
+                <p>960 Cal</p>
+            </div>
+            <div class="price">6<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="mixed-fried.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Mixed Fried Plate</span><span lang="ar">صحن مشكل مقالي</span></h3>
+                <p>1200 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Eggs</span><span lang="ar">يحتوي على: البيض</span></span>
+            </div>
+            <div class="price">7<span class="cur-symbol">⃁</span></div>
+        </div>
     </section>
 
     <section id="boxes">
         <h2 lang="en">Boxes</h2><h2 lang="ar">البوكسات</h2>
-        <div class="item-card"><div class="item-info"><h3>Mini Falafel Box | بوكس ميني فلافل</h3><p>560 Cal</p><span class="allergy">Contains: Wheat, Legumes | القمح - البقوليات</span></div><div class="price">21 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Mini Chicken Box | بوكس ميني دجاج</h3><p>560 Cal</p><span class="allergy">Contains: Wheat | القمح</span></div><div class="price">30 SAR</div></div>
+        
+        <div class="item-card">
+            <img src="box-falafel.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Mini Falafel Box</span><span lang="ar">بوكس ميني فلافل</span></h3>
+                <p>560 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat, Legumes</span><span lang="ar">يحتوي على: القمح، البقوليات</span></span>
+            </div>
+            <div class="price">21<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="box-chicken.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Mini Chicken Box</span><span lang="ar">بوكس ميني دجاج</span></h3>
+                <p>560 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Wheat</span><span lang="ar">يحتوي على: القمح</span></span>
+            </div>
+            <div class="price">30<span class="cur-symbol">⃁</span></div>
+        </div>
     </section>
 
     <section id="falafel">
         <h2 lang="en">Falafel</h2><h2 lang="ar">الفلافل</h2>
-        <div class="item-card"><div class="item-info"><h3>Regular Falafel (5 pcs) | فلافل عادي ٥ حبة</h3><p>93 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">1 SAR</div></div>
-        <div class="item-card"><div class="item-info"><h3>Stuffed Falafel (2 pcs) | فلافل محشي حبتين</h3><p>129 Cal</p><span class="allergy">Contains: Legumes | البقوليات</span></div><div class="price">1 SAR</div></div>
+        
+        <div class="item-card">
+            <img src="falafel.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Regular Falafel (5 pcs)</span><span lang="ar">فلافل عادي ٥ حبة</span></h3>
+                <p>93 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">1<span class="cur-symbol">⃁</span></div>
+        </div>
+
+        <div class="item-card">
+            <img src="stuffed-pcs.jpg" class="item-img" onerror="this.src='logo.png'">
+            <div class="item-info">
+                <h3><span lang="en">Stuffed Falafel (2 pcs)</span><span lang="ar">فلافل محشي حبتين</span></h3>
+                <p>129 Cal</p>
+                <span class="allergy"><span lang="en">Contains: Legumes</span><span lang="ar">يحتوي على: البقوليات</span></span>
+            </div>
+            <div class="price">1<span class="cur-symbol">⃁</span></div>
+        </div>
     </section>
 </div>
 
